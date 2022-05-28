@@ -20,5 +20,13 @@ namespace InvoiceGeneratorTest
             double actual = invoiceGenerator.MultipleRides(rides);
             Assert.AreEqual(actual,35,46);
         }
+        [Test]
+        public void GivenMultipleRides_ShouldReturnInvoiceSummary()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator();
+            Ride[] rides = { new Ride(2, 3), new Ride(4, 5),new Ride(5,6) };
+            InvoiceSummary result = invoice.MultipleRidesInvoice(rides);
+            Assert.AreEqual(result.totalNumberOfRides,rides.Length);
+        }
     }
 }
