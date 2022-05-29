@@ -24,9 +24,18 @@ namespace InvoiceGeneratorTest
         public void GivenMultipleRides_ShouldReturnInvoiceSummary()
         {
             InvoiceGenerator invoice = new InvoiceGenerator();
-            Ride[] rides = { new Ride(2, 3), new Ride(4, 5),new Ride(5,6) };
+            Ride[] rides = { new Ride(2, 3), new Ride(4, 5),new Ride(5,6)};
             InvoiceSummary result = invoice.MultipleRidesInvoice(rides);
             Assert.AreEqual(result.totalNumberOfRides,rides.Length);
+        }
+        [Test]
+        public void GivenUserId_ShouldReturnInvoiceSummary()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator();
+            Ride[] rides = { new Ride(2, 3), new Ride(4, 5), new Ride(5, 6) };
+            invoice.MapUserId("arpan2807",rides);
+            InvoiceSummary summary = invoice.GetRideInvoiceSummary("arpan2807");
+            Assert.AreEqual(summary.totalNumberOfRides,3);
         }
     }
 }
